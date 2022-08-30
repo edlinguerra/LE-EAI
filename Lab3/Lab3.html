@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Prof.&nbsp;Edlin Guerra Castro">
+<meta name="dcterms.date" content="2024-05-08">
+
+<title>Estadística Aplicada I. Lab3: Prueba de hipótesis simples</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="Lab3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab3_files/libs/quarto-html/quarto.js"></script>
+<script src="Lab3_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab3_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Estadística Aplicada I. Lab3: Prueba de hipótesis simples</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Prof.&nbsp;Edlin Guerra Castro </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 8, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="lo-que-harán-ahora-es" class="level2">
+<h2 class="anchored" data-anchor-id="lo-que-harán-ahora-es">Lo que harán ahora es:</h2>
+<ol type="1">
+<li><p>Lea los pasos de cada ejercicio en esta actividad y ejecute los comandos que considere desde los archivos de comandos <code>lab2_e1.R</code> y <code>lab2_e2.R</code>.</p></li>
+<li><p>Las respuesta a las preguntas escríbalas en el Documento Google. Agregue capturas de pantalla sobre los comandos definitivos que le permitieron responder la pregunta. También debe incluir los gráficos en este documento.</p></li>
+</ol>
+</section>
+<section id="distribución-t-student-ejericio-1---una-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-t-student-ejericio-1---una-muestra">Distribución t-student: Ejericio 1 - Una muestra</h2>
+<p>Caso hipotético. Se requiere evaluar si una planta procesadora de celulosa está respetando los límites máximos permisibles de contaminantes en las descargas de aguas residuales vertidas al río. La normativa ambiental Mexicana especifica varias variables y límites máximo permisible para cada una, entre las que destaca la Demanda Bioquímica de Oxígeno (DBO), cuyo promedio máximo permitido es de 30 ml O<sub>2</sub>/l por día. La normativa indica que el promedio debe ser estimado de una muestra considerando 50 mediciones aleatorias en un lapso de tres meses de completa operatividad de la planta.</p>
+<ol type="1">
+<li><p>Importa los datos del archivo <strong>datos1.csv</strong> al ambiente R con el nombre <strong>datos1</strong> y verifica sus características y estructura. Asegúrate que el archivo esté en el ambiente de trabajo.</p></li>
+<li><p>Calcula la media (con la función <code>mean</code>) y desviación estándar (con la función <code>sd</code>) de la DBO en la muestra y obtén un histograma (con la función <code>hist</code>) para ver su distribución. ¿Te parece que tienen una distribución normal? Confirma que los resultados que obtienes y el gráfico queden así:</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Lab3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>¿cuál es el error estándar de la media? ¿Es un valor grande o pequeño? Confirma que este es el resultado:</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6638794</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>Define la hipótesis alternativa y luego la Hipótesis nula. Aplica una prueba de <em>t</em> para una sola muestra, usando el comando <code>t.test</code>, pero antes de efectuar la prueba debes definir el alfa para rechazar la Hipótesis nula. Utiliza la ayuda <code>help</code> para escribir los argumentos correctos de <code>t.test</code> (tip: los mas importantes son <em>mu</em> y <em>alternative</em>)</p></li>
+<li><p>A partir del resultado obtenido (output o salida) responde a las siguientes preguntas:</p>
+<ol type="a">
+<li>¿Cuál fue el valor de <em>t</em> que obtuviste?</li>
+<li>¿Cuál es el valor de probabilidad asociado a ese valor de <em>t</em>?</li>
+<li>¿Existen evidencias suficientes para considerar que DBO de las aguas redisuales superan los valores de la norma?</li>
+<li>¿Cuáles son los límites inferior y superior del intervalo de confianza al 95%?</li>
+</ol></li>
+<li><p>Vamos a calcular el intervalo de confianza paso por paso. Para ello requerimos contar con el valor de <em>t</em> que separa la curva en zonas de baja y alta probabilidad de ocurrir (dos colas, cada una de probabilidad alfa/2). Este valor se obtiene con la función <code>qt</code> y requiere de tres argumentos esenciales (p = 0.025, df = 49, lower.tail = TRUE. Usa el <code>help</code> para tener más detalles de esta función).</p>
+<ol type="a">
+<li>¿Son un error los valores negativos de esta función? ¿Por qué?</li>
+<li>¿Cómo puedes obtener un valor positivo?</li>
+<li>¿Por qué razón usamos una probabilidade de 0.025, si el intervalo de confianza es de 95%?</li>
+<li>¿Por qué usamos n-1 en vez de n? Ahora, multiplica el valor de <em>t</em>-student (absoluto) por el valor de error estándar calculado antes.</li>
+<li>¿Qué obtuviste con esta operación?</li>
+<li>¿Cuáles son las unidades de esta medida? Finalmente suma y resta el intervalo (al 95%) a la media para conocer los límites superior e inferior.</li>
+<li>Compara los valores obtenidos con el resultado de la función usada para hacer la prueba de hipótesis.</li>
+</ol></li>
+<li><p>Calcula el intervalo de confianza al 99%?</p>
+<ol type="a">
+<li>¿En cuál de los dos intervalos (95% o 99%) tengo más confianza de encontrar la media si repito el experimento?</li>
+<li>¿Cuál de los dos intervalos es más ancho?</li>
+<li>¿Qué le sucedería al intervalo si en vez de 50 mediciones, tuviese solo 5 mediciones?</li>
+<li>Verifica tu conclusión (PISTA: usa la función <code>qt</code>)</li>
+</ol></li>
+<li><p>¿Qué sucedería con el IC al 95% si la DBO de los efluentes fuese mas variable? Obtén un histograma y verifica tu conclusión mediante una simulación usando la función <code>rnorm</code> (PISTA: mantén la muestra simulada en n=50, y la media en 40).</p></li>
+</ol>
+</section>
+<section id="distribución-t-student-ejericio-2---dos-muestras" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-t-student-ejericio-2---dos-muestras">Distribución t-student: Ejericio 2 - Dos muestras</h2>
+<p>Continuamos con el caso hipotético. Con el análisis anterior se evidenció que la planta procesadora de papel vierte agua con mayor DBO de la que establece la normativa Mexicana. Sin embargo, esto no implica que haya ocurrido un impacto ambiental, ya que habría que comprobar el impacto (cambio en la DBO antes y después de la operatividad de la planta). Previendo esto, antes de la puesta en desarollo de la planta, se efectuó un Estudio Ambiental de Línea Base, en el que se midió la DBO tres meses antes de operaciones, y luego a los seis meses de operaciones.</p>
+<ol type="1">
+<li><p>Importa los datos del archivo <strong>datos2.csv</strong> al ambiente R con el nombre <strong>datos2</strong> y verifica sus características y estructura. Asegúrate que el archivo esté en el ambiente de trabajo.</p></li>
+<li><p>Obtén los nombres de las variables en el archivo y sigue las siguientes instrucciones:</p>
+<ol type="a">
+<li>Identifica el vector que contiene la variable que se pretende analizar, y establece si ésta es contínua o discreta.</li>
+<li>Identifica el vector que contiene el factor ‘origen’. ¿Cuántos niveles tiene dicho factor?</li>
+<li>¿Cuál es la unidad experimental en este estudio?</li>
+<li>¿Cuántas réplicas fueron medidas en cada nivel? ¿Consideras este diseño uno balanceado?</li>
+</ol></li>
+<li><p>Contruye un histograma con <code>hist</code> para para la variable <code>DBO</code> sin distinguir el momento, pero agregue dos líneas verticales para cada promedio. Luego obtén un gráfico de cajas-bigotes agrupando datos según el <em>Momento</em>. PISTA: usa la función <code>boxplot</code>, busca cómo se usa esta función. ¿cuál representación gráfica te parece más informativa? Explica la respuesta. Confirma que obtienes estos gráficos:</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Lab3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Lab3_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>Describe las características de ambos momentos en términos de sus medias, dispersiones y la forma aproximada de sus distribuciones. Ayudate calculando estos estadísticos con las funciones <code>summary</code>, <code>mean</code>, y <code>sd</code>. ¿Cuáles de estas características son parecidas y cuáles diferentes entre las dos muestras? ¿cuál es el error estándar de la media de cada momento?¿qué significa esto respecto a cada momento?</p></li>
+<li><p>Formula la hipótesis del modelo y la hipótesis nula, y define si se trata de una prueba de <strong>una</strong> o <strong>dos</strong> colas. Obten el valor crítico de la distribución de <em>t</em>-student para rechazar la hipótesis nula. Considera un alfa = 0.05, y grados de libertad = n<sub>1</sub>+n<sub>2</sub>-2.</p></li>
+<li><p>Aplica una prueba de <em>t</em>-student para dos muestras independientes (<em>S3 method for class formula</em>), y responde a las siguientes preguntas:</p>
+<ol type="a">
+<li>¿Cuál es el valor de <em>t</em> obtenido? ¿Es grande o pequeño?</li>
+<li>¿Cuál es la probabilidad asociada al valor de <em>t</em> obtenido? ¿Es grande o pequeña?</li>
+<li>¿Cuál es la conclusión de la prueba que aplicaste?</li>
+<li>¿Podrías enlistar tres de las condiciones más importantes que deben cumplir los datos para interpretar adecuadamente e resultado de una prueba <em>t</em> clásica?</li>
+</ol></li>
+<li><p>Considera que las varianzas de estas dos muestras son lo suficientemente similares como para asumirlas iguales, y aplica una prueba de <em>t</em>-student para varianzas iguales. (PISTA: revisa la informacion del <code>help</code> de <code>t.test</code>)</p></li>
+<li><p>Compara los resultados de ambas pruebas y responde a las siguientes preguntas:</p>
+<ol type="a">
+<li>¿Qué ocurre con el valor de <em>t</em> cuando asumes homogeneidad de varianzas aún cuando no la hay?</li>
+<li>¿Qué ocurre con el valor de probabilidad asociado al estadístico <em>t</em> cuando asumes homogeneidad de varianzas y no la hay?</li>
+<li>¿Qué ocurre con los grado de libertad?</li>
+<li>¿Cuál de las dos pruebas es más conservadora (i.e., tiene menos probabilidad de caer en errores tipo I)?</li>
+<li>¿Confías más en el resultado de la primera prueba o en el de la segunda? Explica tu respuesta.</li>
+</ol></li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
