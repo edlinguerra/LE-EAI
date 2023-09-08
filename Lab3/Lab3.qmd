@@ -2,7 +2,6 @@
 title: 'Estadística Aplicada I'
 subtitle: "Lab3: Prueba de hipótesis simples"
 author: "Prof. Edlin Guerra Castro"
-date: "`r format(Sys.time(), '%d/%m/%Y')`"
 format: pdf
 editor: visual
 ---
@@ -59,8 +58,8 @@ t.test(datos1$DBO, alternative = "greater", mu = 30)
 6.  Vamos a calcular el intervalo de confianza paso por paso. Para ello requerimos contar con el valor de *t* que separa la curva en zonas de baja y alta probabilidad de ocurrir (dos colas, cada una de probabilidad ⍺/2). Este valor se obtiene con la función `qt` y requiere de tres argumentos esenciales (p = 0.025, df = 49, lower.tail = TRUE. Usa el `help` para tener más detalles de esta función).
     a)  ¿Son un error los valores negativos de esta función? ¿Por qué?
     b)  ¿Cómo puedes obtener un valor positivo?
-    c)  ¿Por qué razón usamos una probabilidade de 0.025, si el intervalo de confianza es de 95%?
-    d)  ¿Por qué usamos n-1 en vez de n? Ahora, multiplica el valor de *t*-student (absoluto) por el valor de error estándar calculado antes.
+    c)  ¿Por qué razón usamos una probabilida de 0.025, si el intervalo de confianza es de 95%?
+    d)  ¿Por qué usamos *n*-1 en vez de *n*? Ahora, multiplica el valor de *t*-student (absoluto) por el valor de error estándar calculado antes.
     e)  ¿Qué obtuviste con esta operación?
     f)  ¿Cuáles son las unidades de esta medida? Finalmente suma y resta el intervalo (al 95%) a la media para conocer los límites superior e inferior.
     g)  Compara los valores obtenidos con el resultado de la función usada para hacer la prueba de hipótesis.
@@ -69,11 +68,11 @@ t.test(datos1$DBO, alternative = "greater", mu = 30)
     b)  ¿Cuál de los dos intervalos es más ancho?
     c)  ¿Qué le sucedería al intervalo si en vez de 50 mediciones, tuviese solo 5 mediciones?
     d)  Verifica tu conclusión (PISTA: usa la función `qt`)
-8.  ¿Qué sucedería con el IC al 95% si la DBO de los efluentes fuese mas variable? Obtén un histograma y verifica tu conclusión mediante una simulación usando la función `rnorm` (PISTA: mantén la muestra simulada en n=50, y la media en 40).
+8.  ¿Qué sucedería con el IC al 95% si la DBO de los efluentes fuese mas variable? Obtén un histograma y verifica tu conclusión mediante una simulación de datos usando la función `rnorm` (PISTA: mantén la muestra simulada en *n* = 50, y la media en 40).
 
-## Distribución *t*-student: Ejericio 2 - Dos muestras
+## Distribución *t*-student: Ejercicio 2 - Dos muestras
 
-Continuamos con el caso hipotético. Con el análisis anterior se evidenció que la planta procesadora de papel vierte agua con mayor DBO de la que establece la normativa Mexicana. Sin embargo, esto no implica que haya ocurrido un impacto ambiental, ya que habría que comprobar el impacto (cambio en la DBO antes y después de la operatividad de la planta). Previendo esto, antes de la puesta en desarollo de la planta, se efectuó un Estudio Ambiental de Línea Base, en el que se midió la DBO tres meses antes de operaciones, y luego a los seis meses de operaciones.
+Continuamos con el caso hipotético. Con el análisis anterior se evidenció que la planta procesadora de papel vierte agua con mayor DBO de la que establece la normativa Mexicana. Sin embargo, esto no implica que haya ocurrido un impacto ambiental, ya que habría que comprobar el impacto (cambio en la DBO antes y después de la operatividad de la planta). Previendo esto, antes de la puesta en desarrollo de la planta, se efectuó un Estudio Ambiental de Línea Base, en el que se midió la DBO tres meses antes de operaciones, y luego a los seis meses de operaciones.
 
 1.  Importa los datos del archivo **datos2.csv** al ambiente R con el nombre **datos2** y verifica sus características y estructura. Asegúrate que el archivo esté en el ambiente de trabajo.
 
@@ -82,11 +81,11 @@ datos2 <- read_csv("datos2.csv")
 ```
 
 2.  Obtén los nombres de las variables en el archivo y sigue las siguientes instrucciones:
-    a)  Identifica el vector que contiene la variable que se pretende analizar, y establece si ésta es contínua o discreta.
+    a)  Identifica el vector que contiene la variable que se pretende analizar, y establece si ésta es continua o discreta.
     b)  Identifica el vector que contiene el factor 'Momento'. ¿Cuántos niveles tiene dicho factor?
     c)  ¿Cuál es la unidad de muestreo en este estudio?
     d)  ¿Cuántas réplicas fueron tomadas en cada grupo? ¿Consideras este diseño uno balanceado?
-3.  Contruye un histograma con `hist` para para la variable `DBO` sin distinguir el momento, pero agregue dos líneas verticales para cada promedio. Luego obtén un gráfico de cajas-bigotes agrupando datos según el *Momento*. ¿cuál representación gráfica te parece más informativa? Explica la respuesta. Confirma que obtienes estos gráficos:
+3.  Construye un histograma con `hist` para para la variable `DBO` sin distinguir el momento, pero agregue dos líneas verticales para cada promedio. Luego obtén un gráfico de cajas-bigotes agrupando datos según el *Momento*. ¿cuál representación gráfica te parece más informativa? Explica la respuesta. Confirma que obtienes estos gráficos:
 
 ```{r, echo =  FALSE}
 hist(datos2$DBO, main = "histograma de la DBO", xlab = paste("DBO (", expression(O[2]), "ml/l/d)"), ylab =" Frecuencia")
@@ -119,7 +118,7 @@ t.test(DBO~Momento, data = datos2, alternative = "l")
 
 ```
 
-7.  Considera que las varianzas de estas dos muestras son lo suficientemente similares como para asumirlas iguales, y aplica una prueba de *t*-student para varianzas iguales. (PISTA: revisa la informacion del `help` de `t.test`)
+7.  Considera que las varianzas de estas dos muestras son lo suficientemente similares como para asumirlas iguales, y aplica una prueba de *t*-student para varianzas iguales. (PISTA: revisa la información del `help` de `t.test`)
 
 ```{r, include =  FALSE}
 t.test(DBO~Momento, data = datos2, alternative = "l", var.equal = TRUE)
