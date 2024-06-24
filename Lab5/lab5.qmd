@@ -87,4 +87,3 @@ a.  ¿hay variabilidad significativa entre áreas, entre sitios y entre localida
 b.  Compruebe cuál de las tablas ANOVAs es correcta estimando usted mismo los grados de libertad, cuadrados medios esperados y razones de F según el protocolo de Underwood.
 c.  Si se detecta variabilidad significativa en cualquiera de esos niveles, sería entonces lógico (e interesante) estimar y comparar los tamaños de cada componente de variación, los cuales corresponden a estas diferentes escalas espaciales.
 d.  ¿Cómo puede representar estos componentes de variación?
-
