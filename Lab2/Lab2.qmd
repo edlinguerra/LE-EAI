@@ -1,10 +1,10 @@
 ---
-title: "Estadística descriptiva con R"
+title: "Estadística Aplicada a la Ecología I"
+subtitle: "Lab 2 - Estadística descriptiva con R" 
 author: "Prof. Edlin Guerra Castro"
 format:
    pdf:
      code-link: true
-date: "`r format(Sys.time(), '%d/%m/%Y')`"
 editor: visual
 ---
 
@@ -49,7 +49,7 @@ install.packages("moments")
 install.packages("tidyverse")
 ```
 
-Alternativamente, puedes usar del menú superior la opción *Tools/install packages...*, se desplegará una ventana para que escribas el nombre del paquete a instalar. Los paquetes se instalan una sola vez, siempre que estes en el mismo computador. Para usarlos debes incluirlos en tu sesión de trabajo cada vez que se inicia la sesión. Esto se logra con la función `library`:
+Alternativamente, puedes usar del menú superior la opción *Tools/install packages...*, se desplegará una ventana para que escribas el nombre del paquete a instalar. Los paquetes se instalan una sola vez, siempre que estés en el mismo computador. Para usarlos debes incluirlos en tu sesión de trabajo cada vez que se inicia la sesión. Esto se logra con la función `library`:
 
 ```{r, eval=FALSE}
 library("tidyverse")
@@ -121,9 +121,11 @@ sum(xx, na.rm = T)/length(xx)
 
 5.  ¿Cuál es la diferencia entre estas dos fórmulas? ¿Representan lo mismo?
 
-sum((xx-mean(xx))\^2)/length(xx)
 
-sum((xx-mean(xx))\^2)/(length(xx)-1)
+```{r, eval=FALSE}
+sum((xx-mean(xx))^2)/length(xx)
+sum((xx-mean(xx))^2)/(length(xx)-1)
+```
 
 6.  Con base en el valor de la varianza y usando operadores aritméticos, calcula la desviación estándar de la masa corporal. Confirma tu resultado usando la función `sd()`.
 
