@@ -1,0 +1,239 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # RBasica A: Características generales
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# 1. El espacio visible en R
+# Al abrir R por primera vez en tu computadora, verás una única ventana con información sobre la versión del
+# programa que estás usando. Esta ventana es la consola y es el espacio de interacción con el programa, es 
+# decir, es donde escribes el código programático y donde recibes las respuestas o salidas cada vez que aprietas 
+# la tecla "enter". Intenta escribiendo algo a continuación de la señal de inicio '>':
+
+algo
+
+# R devuelve un mensaje de error diciendo que puede encontrar el objetco "algo". Esto es porque el objeto aún
+# no ha sido creado. Siempre que termines una línea de código y aprietes "enter", R devolverá una de las
+# siguientes: 
+# a) Una nueva señal '>' del lado izquierdo indicando que R está listo para recibir la siguiente instrucción.
+
+xx<-sqrt(25)
+xx
+
+# b) El resultado de una instrucción en la forma de texto en la consola o un gráfico en la ventana gráfica activa.
+
+sum(xx+2)
+plot(xx)
+
+# c) Un signo '+' indicando que la línea de código no aterminó adecuadamente y se requiere algo para concluirla
+# por ejemplo, un paréntesis.
+
+sum(xx+5
+
+# d) Un resultado total o parcial seguido de un mensaje de advertencia, indicando que la instrucción pudo no 
+# haberse llevado a cabo correctamente.
+
+
+
+# e) Un mensaje de error, indicando que la instrucción no se llevó cabo, seguido de una explicación posible.
+
+2 + "caracteres de texto"
+
+# Clic en la tecla 'esc' aborta la instrucción y devuelve una nueva señal de inicio. Dos señales de inicio 
+# seguidas invalida esa línea de código. Las flechas arriba y abajo del teclado trae la línea de código 
+# inmediata anterior o posterior, y es una forma rápida de evitar volver a escribir el código previo otra vez.
+# Un signo de numeral '#' es la indicación de un comentario que formará parte del código, pero no será tomado
+# en cuentra para ninguna acción.
+ 
+xx<-sqrt(25) # Esto calcula la raiz cuadrada de 25 y asigna el resultado al objeto "xx". 
+
+# La ventana gráfica es donde aparecerán los elementos gráficos. Solo hay una ventana gráfica activa a la vez. 
+# Puedes inactivar la ventana actual y abrir una nueva ventana gráfica escribiendo:
+
+x11()
+
+# Seguirás viendo la ventana inactiva con los contenidos "congelados", pero no podrás interactuar con ella 
+# otra vez.
+
+# 2. Operación General
+# R es un lenguaje orientado a objetos, lo que significa que todas las variables, datos, funciones, salidas, 
+# etc., se mantienen activas en el RAM de la computadora en la forma de objetos con un nombre dado por el 
+# usario durante cada sesión. Para ver cuales son los objetos en una sesión activa se usa la función:
+
+ls()
+
+# Est código devuelva la lista de todos los objetos creados durante esa sesión. Para removerlos de la sesión 
+# usa la función: 
+
+rm(xx)
+ls()
+
+# Esta función puede aplicarse a sólo un objeto, a una lista selecta de objetos, o bien, a todos los objetos 
+# de una sesión:
+
+rm(list=ls(all=TRUE))
+rm(list=ls())
+
+# Los objetos en R se manipulan usando funciones y operadores. Las funciones, a su vez, pueden ser formar parte
+# de otras, anidando unas dentro de otras. Esto se logra escribiendo una función seguido de un paréntesis dentro 
+# del cual hay otra función con su propio paréntesis. 
+
+sqrt(sum(2,3,1,2,1))# Estas funciones obtienen la raíz cuadrada de la suma de un vector de numeros.
+sum(2,3,1,2,1)
+sqrt(9)
+
+sum(2,3,1,2,1)^0.5 # Estos son los oepradores equivalentes para dichas funciones.
+
+# Las funciones están organizadas en paquetes o librerías. Estas pueden ser básicas, como {base} o {stats}, que
+# son instaladas junto con el programa R inicial; o bien, paquetes creados de forma independiente por personas
+# interesadas, como {ggplot2}. 
+
+# El programa R, sus actualizaciones, paquetes y toda la información y documentación asociada se encuentra en 
+# los repositorios del CRAN (Comprehensive R Archive Network). Los servideores, distribuidos por todo el mundo 
+# constituyen se conocen como "espejos CRAN" ("CRAN mirrors") porque contienen la misma información.
+
+# Para instalar un paquete de R or bajar cualquier información de la plataforma del R-project, necesitarás
+# escoger un CRAN. Para ello, en el menú deplegable de "Paquetes", clica  a la opción "Selecciones espejo CRAN"
+# o escribe la siguiente función en la consola:
+
+chooseCRANmirror() 
+
+# Se abre una ventana con todas las opciones de donde debes escoger alguna. También puedes usar el menú 
+# desplegable para "Instalar paquete(s)" por ejemplo, para instalar la librería {lattice}; o bien, escribir
+# la siguiente función en la consola. Nota que el nombre de la librería debe llevar doble comillas.
+# 
+install.packages("lattice")
+# 
+# Debe devolver un mensaje diciendo que la librería fue instalada exitosamente, junto con la ruta donde se
+# encuentra el paquete con el código binario. Una vez instalado en tu computadora (en ASCII), necesitas llamar
+# a la libreria para que sus funciones estén disponibles en la sesión activa. Para ello, necesitas cualquiera
+# de las dos siguientes funciones (equivalentes): 
+
+require(lattice)
+library(lattice)
+
+# Solo necesitas instalar el paquete en tu computadora una vez; pero necesitas llamarlo cada vez que inicies 
+# una nueva sesión.
+
+# R no usa archivos temporales y solo interactua con archivos externos para leerlos y guardarlos. Es posible
+# guardar una sesión, es decir, todos los códigos que fueron escritos en la consola durante una sesión. Para ello
+# puedes usar el menú desplegable "Guardat are de trabajo". 
+
+
+# 2. Funciones
+# Las funciones en R están siempre seguidas de un paréntesis redondo. Los argumentos de una función deben
+# enlistarse en el orden correcto y estar siempre separados por comas. Hay argumentos que pueden ser alterados
+# por el usuario, según las modalidades en que quiere que la función sea aplicada. Algunos argumentos tienen
+# una forma "de fault" que será la que operará si dicho argumento no es modificado. Si los argumentos de una
+# función tienen más que una línea de código, clicando "enter" devolverá un signo '+' indicando que falta
+# concluir adecuadamente la instrucción. 
+
+log(100, base = exp(1))
+log(10)
+log(10, base=10) 
+
+# Si quieres escribir mas de una frase en una misma linea de código, debes separar las frases con punto y coma:
+
+log(100, base = exp(1)); log(10); log(10, base=10) 
+
+# Nota que aplicar una función no crea un objeto de forma automática; sólo ejecuta la función en cuestión. Por
+# tanto, al aplicar una función, se puede obtener la salida de la función en la siguiente linea de la consola; se
+# puede aplicar a un objeto con un nombre definido; o bien , se puede salvar directamente en un disco duro externo 
+# o interno. 
+
+sum(32,43)
+yy<-sum(32,43)
+yy
+
+
+# 3. Objetos en R
+# El nombre de un objeto se asigna con '<-', '->' o '=', y puede incluir caracteres de texto, números y puntos:
+
+y.y<-10*10
+y.y
+z.12<-81/9
+z.12
+
+# Hay diferentes tipos de objetos dependiendo de su clase, tipo de elemento y estructura. Los elementos dentro de
+# un objetos pueden ser números, caracteres de texto ("character strings") o operadores lógicos (TRUE, FALSE). Los 
+# caracteres de texto deben ir siempre entre comillas dobles, mientras que los operadores lógicos deben ir siempre
+# en mayúsculas:
+
+A <- "mandarina"
+A
+comp <- TRUE
+comp
+
+# Para saber cual es el número y tipo de elementos en un objeto, puedes usar 'length' y 'mode', respectivamente:
+
+mode(y.y)
+y.y
+mode(A)
+mode(comp)
+length(y.y)
+
+# Nota que del lado izquierdo R devuelve una serie de números dentro de corchetes []. Estos indican el lugar que 
+# ocupa el elemento inmediatamente a seguir en esa línea de código. Asi, si el ancho de la ventaba de la consola
+# cambia, el número entre los corchetes es ajustado automáticamente de acuerdo con el ancho de la ventana. 
+
+A
+many<-seq (0,50)
+many
+
+# Ellenguaje R es sensible a MAYÚSCULAS, pero no a los espacios:
+
+comp
+Comp
+sum                    (3+2)
+sum(3+2)
+
+# Ten cuidado de no repetir el mismo nombre para diferentes objetos puesto que el último nombre prevalece sobre
+# todos los anteriores. 
+
+xx<-4
+xx
+xx<-"xx no sera igual"
+xx
+
+# Se recomienta no usar acrónimos (p.e. ANOVA), letras (p.e. x) o nombres comúnmente (p.e. error) usados en
+# estadística en los objetos.
+
+
+# 4. Operadores en R
+# R tiene varios operadores para ejecutar operaciones aritméticas, comparativas y lógicas. En general, su sintaxis
+# no rquiere el uso de paréntesis. Los operadores aritméticos actúa sobre dos elementos o grupos de elementos; 
+# mientras que los lógicos lo hacen tanto sobre uno como dos elementos.
+
+7+4
+7+4>5
+!TRUE
+7+4<5
+
+# Los operadores aritméticos actúan sobre variables numéricas o lógicas; estas últimas son forzadas a volverse
+# números. Los operadores comparativos actúan sobre cualquier tipo de variable devolviendo uno o mas elementos
+# lógicos:
+
+2*6==3*4
+10/5!=12/6
+yy<=50
+yy>=50
+
+# 7. Ayuda en R
+# Un único signo de interrogación o la función 'help' antes del nombre de una función busca información de ayuda
+# en todas las librerías de R. Un signo de interrogación doble antes de una palabra realiza búsquedas de palabras
+# similares en toda la documentación de R
+
+?log
+help("*")
+??average
+
+# Los argumentos de la función junto con toda la información necesaria para su uso son parte de la documentación en 
+# R que aparece al usa la función 'help'.
+
+help (mean)
+
+# Dado el uso generalizado de R, junto con el hecho de ser gratuito, hace con que muchas preguntas relativas a su
+# uso y aplicación sean fácilmente obtenidas en la red en la forma de blogs, pdf, páginas-web que han sido elaboradas
+# por la comunidad de usuarios. Si te interesa R, se recomienda seguir algún blog o sumarte a alguna red de usuarios
+# para mejorar tu experiencia y facilitar tu aprendizaje. 
+
