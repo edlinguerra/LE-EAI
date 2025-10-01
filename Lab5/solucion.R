@@ -2,7 +2,7 @@ library(GAD)
 library(dplyr)
 library(ggplot2)
 
-datos5b <- read.csv("C:/Users/Edlin/OneDrive/Documents/UNAM/ENES/Lic. Ecologia/Estadística Aplicada I/LE-EAI/Lab5/datos5b.csv")
+datos5b <- read.csv("Lab5/datos5b.csv")
 
 BA <- as.fixed(datos5b$BA)
 CI <- as.fixed(datos5b$CI)
@@ -34,11 +34,10 @@ estimates(mod2)
 gad(mod2)
 
 #Parte C
-
-
 library(GAD)
 library(dplyr)
 library(ggplot2)
+library(readxl)
 
 datos5c <- read_excel("Lab5/datos5c.xlsx")
 View(datos5c)
@@ -54,3 +53,4 @@ S <- datos5c$S
 mod3 <- lm(S~loc + sitio%in%loc + area%in%sitio%in%loc)
 estimates(mod3)
 gad(mod3)
+anova(mod3)

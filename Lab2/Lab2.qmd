@@ -45,7 +45,7 @@ install.packages("iNEXT")
 #para estimar simetría y curtosis
 install.packages("moments")
 
-#Para instalar todos los paquetes del Tidyverse, incluyendo ggplot2, tidyr, dplyr, etc:
+#Para instalar todos los paquetes del Tidyverse
 install.packages("tidyverse")
 ```
 
@@ -60,7 +60,7 @@ Hagamos un análisis exploratorio a los datos de los [pinguinos de la Antártida
 1.  Busque en la pestaña *Help* qué es *palmerpenguin*.
 2.  Identifique la base de datos `penguins` y cárguela en su ambiente global con `data(penguins)`.
 3.  Identifique cuántas variables hay, cuál es la naturaleza de cada una de ellas (tipo de variable, escala), así como cuáles pueden ser consideradas causales y cuáles respuesta.
-4.  Efectue un gráfico de dispersión entre las variables `body_mass_g` y `flipper_lemgth_mm`. Mida el grado de asociación ¿cómo lo haría? Una forma de hacer estas cosas es graficando la asociación, y estimando la correlación (método que se desarrollará en otro laboratorio, pero acá es pide con fines demostrativos)
+4.  Efectue un gráfico de dispersión entre las variables `body_mass_g` y `flipper_length_mm`. Mida el grado de asociación ¿cómo lo haría? Una forma de hacer estas cosas es graficando la asociación, y estimando la correlación (método que se desarrollará en otro laboratorio, pero acá es pide con fines demostrativos)
 
 ```{r, eval=FALSE}
 plot(penguins$body_mass_g, penguins$flipper_length_mm)
@@ -97,7 +97,8 @@ Llegados a este punto, vamos hacer algo de estadística descriptiva. Esta es la 
 
 ```{r, eval = FALSE}
 
-# Para facilitar cálculos, vamos a remover los datos sin registro (identificados con NA), usando el siguiente código:
+# Se deben remover los datos sin registro (NA)
+# usando el siguiente código:
 
 penguins2 <- penguins %>%
   na.omit()
@@ -120,7 +121,6 @@ sum(xx, na.rm = T)/length(xx)
 4.  Calcula la varianza y desviación estándar de la masa corporal usando el comando `var()`
 
 5.  ¿Cuál es la diferencia entre estas dos fórmulas? ¿Representan lo mismo?
-
 
 ```{r, eval=FALSE}
 sum((xx-mean(xx))^2)/length(xx)
